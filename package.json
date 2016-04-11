@@ -5,11 +5,12 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "watch": "watchify -v -t babelify -o public/bundle.js src/index.jsx"
+    "watch": "watchify -v -t babelify -o \"exorcist ./public/bundle.js.map > public/bundle.js\" src/index.jsx -d",
+    "build": "watchify -v -t babelify -o public/bundle.js src/index.jsx"
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/komazarari/react-redux-example.git"
+    "url": "git@github.com/komazarari/react-redux-example.git"
   },
   "author": "Takuto Komazaki",
   "license": "ISC",
@@ -21,7 +22,10 @@
     "react": "^15.0.1",
     "react-dom": "^15.0.1",
     "react-redux": "^4.4.2",
-    "redux": "^3.4.0"
+    "redux": "^3.4.0",
+    "redux-form": "^5.0.1",
+    "redux-logger": "^2.6.1",
+    "redux-thunk": "^2.0.1"
   },
   "devDependencies": {
     "babel-plugin-transform-object-rest-spread": "^6.6.5",
@@ -29,6 +33,7 @@
     "babel-preset-react": "^6.5.0",
     "babelify": "^7.2.0",
     "browserify": "^13.0.0",
+    "exorcist": "^0.4.0",
     "watchify": "^3.7.0"
   }
 }

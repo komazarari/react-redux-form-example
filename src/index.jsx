@@ -1,60 +1,11 @@
-import React, { Component } from 'react'
+import React from 'react'
 import ReactDOM from 'react-dom'
-import { createStore } from 'redux'
-import { connect, Provider } from 'react-redux'
-
-/// actionCreators >>>
-function action1(value) {
-  return {
-    type: 'ACTION1',
-    value
-  }
-}
-/// <<<
-
-/// reducers >>>
-function appReducer(state, action) {
-  switch (action.type) {
-    case 'ACTION1':
-      return Object.assign({}, state, { v1: action.value });
-    default:
-      return state;
-  }
-}
-/// <<<
-
-/// components >>>
-const Comp1 = (props) => (
-  <div>
-    <div>This is Comp1. value is '{props.value}'.</div>
-    <button onClick={() => props.action('VALUE')} >doAction1</button>
-  </div>
-);
-
-/// <<<
-
-class RootApp extends Component {
-  render() {
-    return (
-      <div>
-        Hello, this is root component.
-        <Comp1
-            value={this.props.value1}
-            action={this.props.action1}
-        />
-      </div>
-    )
-  }
-}
-
-const App = connect(
-  (state) => { return { value1: state.v1} }, // mapStateToProps
-  (dispatch) => { return { action1: (v1) => dispatch(action1(v1)) } }// mapDispatchToProps
-)(RootApp);
+import { Provider } from 'react-redux'
+import configureStore from './store/configureStore'
+import App from './containers/App.jsx'
 
 const rootElement = document.getElementById('content');
-const initialValues = { v1: 'initialvalue' };
-const store = createStore(appReducer, initialValues);
+const store = configureStore({app: {myItems: { data: []}}});
 
 ReactDOM.render(
   <Provider store={store}>
