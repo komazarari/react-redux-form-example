@@ -3,6 +3,7 @@ import fetch from 'isomorphic-fetch'
 export const FETCH_MY_ITEMS = 'FETCH_MY_ITEMS'
 export const FETCH_MY_ITEMS_SUCCESS = 'FETCH_MY_ITEMS_SUCCESS'
 export const SELECT_MY_ITEM = 'SELECT_MY_ITEM'
+export const ADD_MY_ITEM = 'ADD_MY_ITEM'
 
 function requestMyItems() {
   return {
@@ -31,5 +32,13 @@ export function selectMyItem(name) {
   return {
     type: SELECT_MY_ITEM,
     name
+  }
+}
+
+export function addMyItem(name, value) {
+  return {
+    type: ADD_MY_ITEM,
+    name,
+    value
   }
 }

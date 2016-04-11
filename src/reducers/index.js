@@ -6,6 +6,8 @@ function app(state = {}, action) {
   switch (action.type) {
   case actions.FETCH_MY_ITEMS:
   case actions.FETCH_MY_ITEMS_SUCCESS:
+  case actions.SELECT_MY_ITEM:
+  case actions.ADD_MY_ITEM:
     return { ...state,
              myItems: myItems(state.myItems, action)
            }
@@ -20,7 +22,7 @@ function myItems(state, action) {
     return { ...state, isFetching: true }
   case actions.FETCH_MY_ITEMS_SUCCESS:
     return { ...state, isFetching: false, data: action.items }
-  case actions.SHOW_MY_ITEM:
+  case actions.SELECT_MY_ITEM:
     return { ...state,
              data: state.data.map(
                (i) => {
@@ -31,6 +33,10 @@ function myItems(state, action) {
                  }
                }
              )
+           }
+  case actions.ADD_MY_ITEM:
+    return { ...state,
+             data: [...state.data, { name: action.name, value: action.value }]
            }
   default:
     return state;

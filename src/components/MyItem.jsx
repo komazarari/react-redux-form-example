@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react'
 
 const MyItem = (props) => {
   return (
-    <div>Item name: {props.name}</div>
+    <span>{props.name} : {props.value}</span>
   )
 }
 
